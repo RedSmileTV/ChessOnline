@@ -1,17 +1,19 @@
 # Chess Online
 
 ## Description
-- A multiplayer Chess Game made in Java using Java swing and socket programming.
-### Features
-- Multiplayer
-- Chat
-- Move History
-- Move Validation
-- Checkmate
-- Stalemate
-- Draw
-- Resign
-- Draw Offer
+- A multiplayer Chess Game made in Java using Java swing and database programming.
+### Features checklist
+- [ ] Move Validation
+- [ ] Checkmate
+- [ ] Stalemate
+- [ ] Draw
+- [ ] Multiplayer
+- [ ] Resign
+- [ ] Draw Offer
+- [ ] Draw Accept
+- [ ] Move History
+- [ ] Chat
+- [ ] Spectate
 
 ### How to run
 1. Download the newest release from [here](https://github.com/RedSmileTV/ChessOnline/releases)
