@@ -5,19 +5,23 @@ import de.redsmiletv.Controller;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.Objects;
 
 public class GUI extends JFrame {
     private Controller controller;
-    private JPanel field = new JPanel();
-    private JButton[][] btnField = new JButton[8][8];
-    private JButton whitePlayer = new JButton();
-    private JButton blackPlayer = new JButton();
+    private final JPanel field = new JPanel();
+    private final JButton[][] btnField = new JButton[8][8];
+    private final JButton whitePlayer = new JButton();
+    private final JButton blackPlayer = new JButton();
     public GUI() {
         // UI properties
         setTitle("Chess");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 800);
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("icon.png"));
+        setLayout(null);
+        setResizable(false);
+
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("icon.png")));
         resizeIcon(icon);
         setIconImage(icon.getImage());
         Dimension dimension = getToolkit().getScreenSize();
@@ -26,7 +30,7 @@ public class GUI extends JFrame {
         setLocation(xPos, yPos);
         getContentPane().setBackground(Color.DARK_GRAY);
 
-        // Field panel properties
+        // UI components
         field.setSize(488, 488);
         field.setLocation(50, 50);
         field.setBorder(new LineBorder(Color.GRAY, 4));
@@ -54,10 +58,7 @@ public class GUI extends JFrame {
         blackPlayer.setFocusable(false);
         add(blackPlayer);
 
-
-
-
-
+        // Creates the board using a 2D JButton Array
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 btnField[j][i] = new JButton();
@@ -84,15 +85,11 @@ public class GUI extends JFrame {
         whitePlayer.addActionListener(e -> whitePlayer.setVisible(false));
         blackPlayer.addActionListener(e -> blackPlayer.setVisible(false));
 
-
-        // UI properties
-        setLayout(null);
-        setResizable(false);
+        // UI property must stay at the end of constructor
         setVisible(true);
 
         // Initializing the controller
         controller = new Controller(this);
-
     }
 
     public void setPiece(int x, int y, ImageIcon pieceIcon) {
