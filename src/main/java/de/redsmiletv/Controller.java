@@ -1,7 +1,6 @@
 package de.redsmiletv;
 
 import de.redsmiletv.db.Data;
-import de.redsmiletv.pieces.Pawn;
 import de.redsmiletv.pieces.Piece;
 import de.redsmiletv.ui.GUI;
 
@@ -9,7 +8,8 @@ public class Controller {
     private GUI gui;
     private Board board;
     Player white, black;
-
+    boolean isFirstMove = true;
+    int startX, startY;
     public Controller(GUI gui) {
         this.gui = gui;
         Data data = new Data();
@@ -24,14 +24,27 @@ public class Controller {
     }
 
     public void move(int x, int y) {
-        int startX, startY;
-        Piece startPiece, endPiece;
-        y = (y - 7) * -1; // Flips the y axis
+        // TODO move method
+        Piece startPiece = null;
+
+        if (isFirstMove) {
+            if (board.getPiece(x, y) == null) return;
+            startX = x;
+            startY = y;
+            startPiece = board.getPiece(startX, startY);
+            System.out.println(startPiece);
+            isFirstMove = false;
+        }
+        // TODO fix NullPointerException
+        else if (startPiece.isValidMove(startX, startY, x, y)) {
+            System.out.println("SIUUUU");
+            isFirstMove = true;
+        }
 
 
-        
 
     }
+
 
     private void updateBoard() {
         Piece piece;
